@@ -1,2 +1,4 @@
-echo "Starting mountd..."
-/usr/sbin/rpcall --no-udp --no-nfs-version 2 --no-nfs-version 3
+#!/usr/bin/execlineb -P
+
+foreground { rpc.nfsd -N 2 -N 3 --debug 8  }
+rpc.mountd -F -N 2 -N 3 --debug all

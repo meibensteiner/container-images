@@ -1,2 +1,3 @@
-echo "Starting rpcbind..."
-/sbin/rpcbind -w
+#!/usr/bin/with-contenv bash
+
+rpcbind -f
