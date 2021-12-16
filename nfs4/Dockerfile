@@ -1,9 +1,12 @@
 FROM alpine
-COPY nfs4/s6/ /etc/services.d/
-RUN apk add --no-cache --update --verbose nfs-utils s6 libnfs bash && \
-    mkdir -p /var/lib/nfs/rpc_pipefs && \
-    echo "rpc_pipefs  /var/lib/nfs/rpc_pipefs   rpc_pipefs      defaults        0       0" >> /etc/fstab && \
-    echo "nfsd        /proc/fs/nfsd             nfsd            defaults        0       0" >> /etc/fstab
-VOLUME /nfs
-EXPOSE 111/udp 111/tcp 2049/udp 2049/tcp
-ENTRYPOINT ["init"]
+
+ADD https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-nobin.tar.gz /tmp/
+RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+    apk add --no-cache nfs-utils
+
+COPY nfs4/config.init /etc/cont-init.d/00-config
+COPY nfs4/rpcbind.run /etc/services.d/rpcbind/run
+COPY nfs4/mountd.run /etc/services.d/mountd/run
+
+EXPOSE 111/udp 2049/tcp 2049/udp
+CMD ["/init"]
