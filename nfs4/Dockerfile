@@ -1,7 +1,7 @@
 FROM alpine
 
 ADD https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-nobin.tar.gz /tmp/
-RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C / && \
+RUN tar xzf /tmp/s6-overlay-nobin.tar.gz -C / && \
     apk add --no-cache nfs-utils
 
 COPY nfs4/config.init /etc/cont-init.d/00-config
