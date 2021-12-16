@@ -9,4 +9,5 @@ COPY nfs4/rpcbind.run /etc/services.d/rpcbind/run
 COPY nfs4/mountd.run /etc/services.d/mountd/run
 
 EXPOSE 111/udp 2049/tcp 2049/udp
-ENTRYPOINT ["sh","-c","/init"]
+#ENTRYPOINT ["sh","-c","/init"]
+ENTRYPOINT ["tail","-f","/dev/null"]
