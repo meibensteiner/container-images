@@ -1,0 +1,2 @@
+echo "Starting mountd..."
+/usr/sbin/rpcall --no-udp --no-nfs-version 2 --no-nfs-version 3
