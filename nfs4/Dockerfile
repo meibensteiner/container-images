@@ -6,4 +6,4 @@ RUN apk add --no-cache --update --verbose nfs-utils s6 && \
     echo "nfsd        /proc/fs/nfsd             nfsd            defaults        0       0" >> /etc/fstab
 VOLUME /nfs
 EXPOSE 2049/tcp
-ENTRYPOINT ["/init"]
+ENTRYPOINT ["init"]
