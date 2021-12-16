@@ -32,6 +32,6 @@ jobs:
         with:
           file: tftp/Dockerfile
           push: true
-          tags: meibensteiner/tftp:nightly-$${{ steps.date.outputs.date }}
+          tags: meibensteiner/tftp:nightly-${{ steps.date.outputs.date }}
           platforms: linux/amd64,linux/arm64
 
