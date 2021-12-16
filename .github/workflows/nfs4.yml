@@ -1,0 +1,38 @@
+name: NFSv4
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: ghcr.io
+          username: meibensteiner
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          file: nfs4/Dockerfile
+          push: true
+          tags: ghcr.io/meibensteiner/nfs4:nightly-${{ steps.date.outputs.date }}, ghcr.io/meibensteiner/nfs4:latest
+          platforms: linux/amd64,linux/arm64
+    

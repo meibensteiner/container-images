@@ -1,6 +1,6 @@
 FROM alpine
-RUN apk add --no-cache tftp-hpa
-VOLUME /var/tftp
+RUN apk add --no-cache --update --verbose tftp-hpa
+VOLUME /tftp
 EXPOSE 69/udp
 ENTRYPOINT ["in.tftpd"]
-CMD ["-L", "--secure", "/var/tftp"]
+CMD ["-L", "--secure", "/tftp"]
