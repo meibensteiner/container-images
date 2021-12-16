@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  docker:
+  build-docker:
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
@@ -28,3 +28,4 @@ jobs:
           file: tftp/Dockerfile
           push: true
           tags: meibensteiner/tftp:latest
+          platforms: linux/amd64,linux/arm64
