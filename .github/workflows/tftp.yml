@@ -24,14 +24,15 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1 
         with:
+          registry: ghcr.io
           username: meibensteiner
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           file: tftp/Dockerfile
           push: true
-          tags: meibensteiner/tftp:nightly-${{ steps.date.outputs.date }}
+          tags: ghcr.io/meibensteiner/tftp:nightly-${{ steps.date.outputs.date }}
           platforms: linux/amd64,linux/arm64
 
