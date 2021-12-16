@@ -5,5 +5,5 @@ RUN apk add --no-cache --update --verbose nfs-utils && \
     echo "nfsd        /proc/fs/nfsd             nfsd            defaults        0       0" >> /etc/fstab
 VOLUME /nfs
 EXPOSE 2049/tcp
-COPY entrypoint.sh /entrypoint.sh
+COPY nfs4/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["sh -c /entrypoint.sh"]
