@@ -1,8 +1,12 @@
 FROM alpine
 
-RUN arch=$(uname -a); case $arch in "x86_64") arch="amd64";; "arm") arch="arm";; "aarch64") arch="aarch64";; *) echo "Unsupported architecture"; exit 1;; esac; && \
-    wget https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-$arch.tar.gz -O /tmp/s6-overlay-nobin.tar.gz && \
-    tar xzf /tmp/s6-overlay-nobin.tar.gz -C / && \
+RUN case "$(arch)" in \
+        x86_64) S6_ARCH='amd64';; \
+        arm) S6_ARCH='armhf';; \
+        aarch64) S6_ARCH='aarch64';; \
+        *) echo "unsupported architecture"; exit 1 ;; \
+    esac && \
+    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz | tar xvzf - -C / && \
     apk add --no-cache nfs-utils
 
 COPY nfs4/config.init /etc/cont-init.d/00-config
@@ -10,5 +14,4 @@ COPY nfs4/rpcbind.run /etc/services.d/rpcbind/run
 COPY nfs4/mountd.run /etc/services.d/mountd/run
 
 EXPOSE 111/udp 2049/tcp 2049/udp
-#ENTRYPOINT ["sh","-c","/init"]
-ENTRYPOINT ["tail","-f","/dev/null"]
+ENTRYPOINT ["sh","-c","/init"]
