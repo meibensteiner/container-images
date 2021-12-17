@@ -34,5 +34,5 @@ jobs:
           file: nfs4/Dockerfile
           push: true
           tags: ghcr.io/meibensteiner/nfs4:nightly-${{ steps.date.outputs.date }}, ghcr.io/meibensteiner/nfs4:latest
-          platforms: linux/amd64,linux/arm64
-    
+          platforms: linux/amd64,linux/arm64,linux/aarch64
+
