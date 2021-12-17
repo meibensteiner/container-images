@@ -1,13 +1,13 @@
 FROM alpine
 
-RUN apk add --no-cache nfs-utils curl && \
+RUN apk add --no-cache nfs-utils libnfs curl && \
     case "$(arch)" in \
         x86_64) S6_ARCH='amd64';; \
         arm) S6_ARCH='armhf';; \
         aarch64) S6_ARCH='aarch64';; \
         *) echo "unsupported architecture"; exit 1 ;; \
     esac && \
-    echo "Current architecture being built: " arch "    Chosen s6 arch: " $S6_ARCH && \
+    echo "Current architecture being built: " $(arch) "    Chosen s6 arch: " $S6_ARCH && \
     mkdir -p /var/lib/nfs/rpc_pipefs && \
     mkdir -p /var/lib/nfs/v4recovery && \
     echo "rpc_pipefs /var/lib/nfs/rpc_pipefs rpc_pipefs defaults 0 0" >> /etc/fstab && \
