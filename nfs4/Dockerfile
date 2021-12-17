@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.13
 
 RUN apk add --no-cache nfs-utils libnfs curl && \
     case "$(arch)" in \
