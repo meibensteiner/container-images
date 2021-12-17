@@ -1,8 +1,9 @@
 FROM alpine
 
-RUN wget https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-nobin.tar.gz -O /tmp/s6-overlay-nobin.tar.gz && \
+RUN arch=$(uname -a); case $arch in "x86_64") arch="amd64";; "arm") arch="arm";; "aarch64") arch="aarch64";; *) echo "Unsupported architecture"; exit 1;; esac; && \
+    wget https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-$arch.tar.gz -O /tmp/s6-overlay-nobin.tar.gz && \
     tar xzf /tmp/s6-overlay-nobin.tar.gz -C / && \
-    apk add --no-cache nfs-utils s6
+    apk add --no-cache nfs-utils
 
 COPY nfs4/config.init /etc/cont-init.d/00-config
 COPY nfs4/rpcbind.run /etc/services.d/rpcbind/run
