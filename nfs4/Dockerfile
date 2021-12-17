@@ -6,7 +6,8 @@ RUN case "$(arch)" in \
         aarch64) S6_ARCH='aarch64';; \
         *) echo "unsupported architecture"; exit 1 ;; \
     esac && \
-    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-${S6_ARCH}.tar.gz | tar xvzf - -C / && \
+    echo $S6_ARCH && \
+    curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.3/s6-overlay-${S6_ARCH}.tar.gz | tar xvzf - -C / && \
     apk add --no-cache nfs-utils
 
 COPY nfs4/config.init /etc/cont-init.d/00-config
