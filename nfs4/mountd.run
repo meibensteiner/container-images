@@ -1,5 +1,4 @@
 #!/usr/bin/execlineb -P
 
-echo "Running mountd"
 foreground { rpc.nfsd -N 2 -N 3 --debug 8  }
 rpc.mountd -F -N 2 -N 3 --debug all

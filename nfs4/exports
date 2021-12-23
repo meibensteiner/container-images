@@ -1,1 +1,1 @@
-/var/nfs *(rw,wdelay,fsid=0,root_squash,no_subtree_check,insecure)
+/nfs *(rw,wdelay,fsid=0,root_squash,no_subtree_check,insecure)
