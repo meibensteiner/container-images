@@ -3,7 +3,6 @@ FROM alpine
 RUN apk add --no-cache nfs-utils curl && \
     case "$(arch)" in \
         x86_64) S6_ARCH='amd64';; \
-        arm*) S6_ARCH='armhf';; \
         aarch64) S6_ARCH='aarch64';; \
         *) echo "unsupported architecture"; exit 1 ;; \
     esac && \

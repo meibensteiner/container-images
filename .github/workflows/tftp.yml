@@ -34,4 +34,4 @@ jobs:
           file: tftp/Dockerfile
           push: true
           tags: ghcr.io/meibensteiner/tftp:nightly-${{ steps.date.outputs.date }}, ghcr.io/meibensteiner/tftp:latest
-          platforms: linux/amd64,linux/arm64,linux/arm/v7    
+          platforms: linux/amd64,linux/arm64
