@@ -1,5 +1,6 @@
 FROM alpine
 
+RUN arch
 RUN apk add --no-cache nfs-utils curl && \
     echo "Current architecture being built: " $(arch) && \
     mkdir -p /var/lib/nfs/rpc_pipefs /nfs && \
