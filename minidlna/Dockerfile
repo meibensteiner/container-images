@@ -11,5 +11,5 @@ VOLUME /media
 RUN chmod +x /entrypoint.sh && \
     mkdir /media/Music && \
     mkdir /media/Videos && \
-    mkdir /media/Pictures && \
+    mkdir /media/Pictures
 ENTRYPOINT [ "/entrypoint.sh" ]
