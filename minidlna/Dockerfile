@@ -2,14 +2,11 @@ FROM alpine
 MAINTAINER Michael Eibensteiner <office@meibensteiner.at>
 
 RUN apk --no-cache add minidlna
-ADD minidlna/minidlna.conf /etc/minidlna.conf
 ADD minidlna/entrypoint.sh /entrypoint.sh
+ADD minidlna/minidlna.conf /minidlna-template.conf
 
 EXPOSE 1900/udp 8200
 VOLUME /media
 
-RUN chmod +x /entrypoint.sh && \
-    mkdir /media/Music && \
-    mkdir /media/Videos && \
-    mkdir /media/Pictures
+RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
