@@ -9,5 +9,5 @@ EXPOSE 1900/udp 8200
 VOLUME /media
 
 RUN chmod +x /entrypoint.sh && \
-    mkir /media/movies
+    mkdir -p /media/movies
 ENTRYPOINT [ "/entrypoint.sh" ]
