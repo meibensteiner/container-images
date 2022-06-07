@@ -12,7 +12,7 @@ MAINTAINER Michael Eibensteiner <office@meibensteiner.at>
 RUN apk --no-cache add minidlna
 ADD minidlna/entrypoint.sh /entrypoint.sh
 ADD minidlna/minidlna-template.conf /etc/minidlna-template.conf
-COPY --from=fswatch-builder /tmp/build/fswatch/src/fswatch /usr/local/bin/fswatch
+COPY --from=fswatch-builder /tmp/build/src/fswatch /usr/local/bin/fswatch
 
 EXPOSE 1900/udp 8200
 VOLUME /media
