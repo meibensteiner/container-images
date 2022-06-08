@@ -13,6 +13,7 @@ RUN apk --no-cache add minidlna
 ADD minidlna/entrypoint.sh /entrypoint.sh
 ADD minidlna/minidlna-template.conf /etc/minidlna-template.conf
 COPY --from=fswatch-builder /usr/local/bin/fswatch /usr/local/bin/fswatch
+COPY --from=fswatch-builder /tmp/build/libfswatch/src/.libs/libfswatch.so.11 /usr/local/lib/libfswatch.so.11
 
 EXPOSE 1900/udp 8200
 VOLUME /media
