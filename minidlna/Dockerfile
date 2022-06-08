@@ -2,7 +2,7 @@ FROM alpine AS fswatch-builder
 WORKDIR /tmp/build
 RUN apk add --no-cache file git autoconf automake libtool gettext gettext-dev make g++ texinfo curl && \
     git clone https://github.com/emcrisostomo/fswatch.git . && \
-    ./autogen.sh && ./configure && make -j
+    ./autogen.sh && ./configure && make -j && make install
 
 
 
