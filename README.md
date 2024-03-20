@@ -15,4 +15,5 @@ All images are treated this way. However, I can only guarantee support for image
 |Project|OS|Support|
 |-|-|-|
 [udpbroadcastrelay](udpbroadcastrelay)|Distroless|Supported
+[inotify-tools](inotify-tools)|Alpine|Supported
 [minidlna](minidlna)|Alpine|Unsupported
